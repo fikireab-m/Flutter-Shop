@@ -5,6 +5,7 @@ import 'package:flutter_shop/screens/categories_screen.dart';
 import 'package:flutter_shop/screens/feeds_screen.dart';
 import 'package:flutter_shop/screens/users_screen.dart';
 import 'package:flutter_shop/widgets/appbar_icons.dart';
+import 'package:flutter_shop/widgets/feeds_widget.dart';
 import 'package:flutter_shop/widgets/sale_widget.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:card_swiper/card_swiper.dart';
@@ -151,6 +152,19 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                       ),
+                      GridView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: 3,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 0.0,
+                                  mainAxisSpacing: 0.0,
+                                  childAspectRatio: 0.7),
+                          itemBuilder: (ctx, index) {
+                            return const FeedsWidget();
+                          })
                     ],
                   ),
                 ),
