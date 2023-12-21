@@ -62,6 +62,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_iconly:
+    dependency: "direct main"
+    description:
+      name: flutter_iconly
+      sha256: fabcbd59d93666aed6b0f7b4285776686cf60d07447d4afbffee92635d5ed785
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -107,6 +115,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.10.0"
+  page_transition:
+    dependency: "direct main"
+    description:
+      name: page_transition
+      sha256: dee976b1f23de9bbef5cd512fe567e9f6278caee11f5eaca9a2115c19dc49ef6
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   path:
     dependency: transitive
     description:
@@ -186,3 +202,4 @@ packages:
     version: "0.3.0"
 sdks:
   dart: ">=3.2.3 <4.0.0"
+  flutter: ">=1.17.0"
