@@ -17,6 +17,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_iconly: ^1.0.2
   page_transition: ^2.1.0
+  fancy_shimmer_image: ^2.0.3
 
 dev_dependencies:
   flutter_test:
@@ -30,8 +31,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  assets:
-  #  - assets/images/
+  # assets:
+  # - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

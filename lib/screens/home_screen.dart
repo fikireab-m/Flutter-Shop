@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_shop/consts/colors.dart';
+import 'package:flutter_shop/screens/categories_screen.dart';
 import 'package:flutter_shop/widgets/appbar_icons.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -41,11 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   context,
                   PageTransition(
                     type: PageTransitionType.fade,
-                    child: const Scaffold(
-                      body: Center(
-                        child: Text('Categories'),
-                      ),
-                    ),
+                    child: const CategoriesScreen(),
                   ),
                 );
               },
