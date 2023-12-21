@@ -2,6 +2,7 @@ import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_shop/constants/colors.dart';
+import 'package:flutter_shop/screens/product_details_screen.dart';
 import 'package:page_transition/page_transition.dart';
 
 class FeedsWidget extends StatelessWidget {
@@ -22,11 +23,7 @@ class FeedsWidget extends StatelessWidget {
               context,
               PageTransition(
                 type: PageTransitionType.fade,
-                child: const Scaffold(
-                  body: Center(
-                    child: Text('Product detail'),
-                  ),
-                ),
+                child: const ProductDetails(),
               ),
             );
           },
