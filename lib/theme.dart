@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/consts/colors.dart';
+import 'package:flutter_shop/constants/colors.dart';
 
 ThemeData themeData = ThemeData(
   colorScheme: ThemeData().colorScheme.copyWith(
