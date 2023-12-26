@@ -37,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     _textEditingController = TextEditingController();
     getProducts();
+    getCategories();
     setState(() {});
     super.initState();
   }
@@ -64,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 context,
                 PageTransition(
                   type: PageTransitionType.fade,
-                  child: const CategoriesScreen(),
+                  child: CategoriesScreen(categories: categories),
                 ),
               );
             },

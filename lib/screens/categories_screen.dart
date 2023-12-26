@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter_shop/constants/colors.dart';
+import 'package:flutter_shop/models/category.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({Key? key}) : super(key: key);
+  final List<Category> categories;
+  const CategoriesScreen({Key? key, required this.categories})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +17,7 @@ class CategoriesScreen extends StatelessWidget {
       body: GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: 3,
+          itemCount: categories.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             crossAxisSpacing: 0.0,
@@ -36,14 +39,14 @@ class CategoriesScreen extends StatelessWidget {
                         color: Colors.red,
                         size: 28,
                       ),
-                      imageUrl: "https://placeimg.com/640/480/any",
+                      imageUrl: categories[index].image ?? "",
                       boxFit: BoxFit.fill,
                     ),
                   ),
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      "Category name",
+                      categories[index].name ?? "",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 24,
