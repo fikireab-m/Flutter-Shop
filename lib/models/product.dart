@@ -29,6 +29,12 @@ class Product {
     category =
         json['category'] != null ? Category.fromJson(json['category']) : null;
   }
+  static List<Product> productsFromSnapshot(List productSnaphot) {
+    // print("data ${productSnaphot[0]}");
+    return productSnaphot.map((data) {
+      return Product.fromJson(data);
+    }).toList();
+  }
 }
 
 class Category {
