@@ -45,7 +45,7 @@ class FeedsWidget extends StatelessWidget {
                                 color: Color.fromRGBO(33, 150, 243, 1)),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: "168.00",
+                                  text: '${product.price}',
                                   style: TextStyle(
                                       color: lightTextColor,
                                       fontWeight: FontWeight.w600)),
@@ -72,15 +72,14 @@ class FeedsWidget extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  "Title",
+                  '${product.title}',
                   overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                  style: TextStyle(
+                  maxLines: 1,
+                  style: const TextStyle(
                     fontSize: 17,
-                    //  fontFamily: 'Roboto',
                     fontWeight: FontWeight.w700,
                   ),
                 ),
