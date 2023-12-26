@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_shop/constants/colors.dart';
 import 'package:flutter_shop/data/api_call.dart';
+import 'package:flutter_shop/models/category.dart';
 import 'package:flutter_shop/models/product.dart';
 import 'package:flutter_shop/screens/categories_screen.dart';
 import 'package:flutter_shop/screens/feeds_screen.dart';
@@ -24,6 +25,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<List<Product>> getProducts() async {
     final products = await APIHandler.getProducts();
     return products;
+  }
+
+  List<Category> categories = [];
+  Future<void> getCategories() async {
+    categories = await APIHandler.getCategories();
+    setState(() {});
   }
 
   @override

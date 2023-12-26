@@ -89,7 +89,6 @@ class ProductDetails extends StatelessWidget {
                       boxFit: BoxFit.fill,
                     );
                   },
-
                   autoplay: true,
                   itemCount: product.images!.length,
                   pagination: const SwiperPagination(
