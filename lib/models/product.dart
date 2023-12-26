@@ -1,56 +1,28 @@
+import 'package:flutter_shop/models/category.dart';
+
 class Product {
   int? id;
   String? title;
   int? price;
   String? description;
-  List<String>? images;
-  String? creationAt;
-  String? updatedAt;
   Category? category;
+  List<String>? images;
 
   Product(
       {this.id,
       this.title,
       this.price,
       this.description,
-      this.images,
-      this.creationAt,
-      this.updatedAt,
-      this.category});
+      this.category,
+      this.images});
 
   Product.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     price = json['price'];
     description = json['description'];
-    images = json['images'].cast<String>();
-    creationAt = json['creationAt'];
-    updatedAt = json['updatedAt'];
     category =
         json['category'] != null ? Category.fromJson(json['category']) : null;
-  }
-  static List<Product> productsFromSnapshot(List productSnaphot) {
-    // print("data ${productSnaphot[0]}");
-    return productSnaphot.map((data) {
-      return Product.fromJson(data);
-    }).toList();
-  }
-}
-
-class Category {
-  int? id;
-  String? name;
-  String? image;
-  String? creationAt;
-  String? updatedAt;
-
-  Category({this.id, this.name, this.image, this.creationAt, this.updatedAt});
-
-  Category.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    image = json['image'];
-    creationAt = json['creationAt'];
-    updatedAt = json['updatedAt'];
+    images = json['images'].cast<String>();
   }
 }
