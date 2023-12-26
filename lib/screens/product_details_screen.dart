@@ -2,17 +2,16 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/constants/colors.dart';
+import 'package:flutter_shop/models/product.dart';
 
-class ProductDetails extends StatefulWidget {
+class ProductDetails extends StatelessWidget {
+  final Product product;
+
   const ProductDetails({
     Key? key,
+    required this.product,
   }) : super(key: key);
 
-  @override
-  State<ProductDetails> createState() => _ProductDetailsState();
-}
-
-class _ProductDetailsState extends State<ProductDetails> {
   final titleStyle = const TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
 
   @override
@@ -34,10 +33,12 @@ class _ProductDetailsState extends State<ProductDetails> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Category",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                    Text(
+                      '${product.category!.name}',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                     const SizedBox(
                       height: 18,
@@ -48,7 +49,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                         Flexible(
                           flex: 3,
                           child: Text(
-                            "Lorem Ipsum",
+                            '${product.title}',
                             textAlign: TextAlign.start,
                             style: titleStyle,
                           ),
@@ -63,7 +64,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                     color: Color.fromRGBO(33, 150, 243, 1)),
                                 children: <TextSpan>[
                                   TextSpan(
-                                      text: "168.00",
+                                      text: '${product.price}',
                                       style: TextStyle(
                                           color: lightTextColor,
                                           fontWeight: FontWeight.bold)),
@@ -84,13 +85,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                   itemBuilder: (BuildContext context, int index) {
                     return FancyShimmerImage(
                       width: double.infinity,
-                      imageUrl: "https://placeimg.com/640/480/any",
+                      imageUrl: product.images![index],
                       boxFit: BoxFit.fill,
                     );
                   },
 
                   autoplay: true,
-                  itemCount: 3,
+                  itemCount: product.images!.length,
                   pagination: const SwiperPagination(
                     alignment: Alignment.bottomCenter,
                     builder: DotSwiperPaginationBuilder(
@@ -113,10 +114,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                     const SizedBox(
                       height: 18,
                     ),
-                    const Text(
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                    Text(
+                      '${product.description}',
                       textAlign: TextAlign.start,
-                      style: TextStyle(fontSize: 18.0),
+                      style: const TextStyle(fontSize: 18.0),
                     ),
                   ],
                 ),

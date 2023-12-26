@@ -25,7 +25,7 @@ class FeedsWidget extends StatelessWidget {
               context,
               PageTransition(
                 type: PageTransitionType.fade,
-                child: const ProductDetails(),
+                child: ProductDetails(product: product),
               ),
             );
           },
