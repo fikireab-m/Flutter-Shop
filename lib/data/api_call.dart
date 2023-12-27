@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter_shop/constants/api_constants.dart';
 import 'package:flutter_shop/models/category.dart';
 import 'package:flutter_shop/models/product.dart';
+import 'package:flutter_shop/models/user.dart';
 import 'package:http/http.dart' as http;
 
 class APIHandler {
@@ -35,6 +36,25 @@ class APIHandler {
         categories.add(Category.fromJson(element));
       }
       return categories;
+    } catch (error) {
+      log("An error occured $error");
+      throw error.toString();
+    }
+  }
+
+  static Future<List<User>> getUsers({required String limit}) async {
+    List<User> users = [];
+    try {
+      var uri = Uri.https(baseUrl, "api/v1/users", {
+        "offset": "0",
+        "limit": limit,
+      });
+      var response = await http.get(uri);
+      final data = (jsonDecode(response.body)) as List;
+      for (var element in data) {
+        users.add(User.fromJson(element));
+      }
+      return users;
     } catch (error) {
       log("An error occured $error");
       throw error.toString();
