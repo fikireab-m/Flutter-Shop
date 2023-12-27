@@ -12,6 +12,7 @@ import 'package:flutter_shop/widgets/feeds_widget.dart';
 import 'package:flutter_shop/widgets/sale_widget.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -186,7 +187,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             GridView.builder(
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
-                                itemCount: 4,
+                                itemCount: snapshot.data!.length < 4
+                                    ? snapshot.data!.length
+                                    : 4,
                                 gridDelegate:
                                     const SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
@@ -195,8 +198,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   childAspectRatio: 0.7,
                                 ),
                                 itemBuilder: (ctx, index) {
-                                  return FeedsWidget(
-                                    product: snapshot.requireData[index],
+                                  return ChangeNotifierProvider.value(
+                                    value: snapshot.data![index],
+                                    child: const FeedsWidget(),
                                   );
                                 })
                           ],

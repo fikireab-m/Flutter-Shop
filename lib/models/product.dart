@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_shop/models/category.dart';
 
-class Product {
+class Product with ChangeNotifier {
   int? id;
   String? title;
   int? price;

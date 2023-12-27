@@ -5,14 +5,15 @@ import 'package:flutter_shop/constants/colors.dart';
 import 'package:flutter_shop/models/product.dart';
 import 'package:flutter_shop/screens/product_details_screen.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class FeedsWidget extends StatelessWidget {
-  final Product product;
-  const FeedsWidget({Key? key, required this.product}) : super(key: key);
+  const FeedsWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final Product product = Provider.of<Product>(context);
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: Material(
