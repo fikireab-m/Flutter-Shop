@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_shop/constants/colors.dart';
 import 'package:flutter_shop/data/api_call.dart';
-import 'package:flutter_shop/models/category.dart';
 import 'package:flutter_shop/models/product.dart';
 import 'package:flutter_shop/screens/categories_screen.dart';
 import 'package:flutter_shop/screens/feeds_screen.dart';
@@ -28,17 +27,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return products;
   }
 
-  List<Category> categories = [];
-  Future<void> getCategories() async {
-    categories = await APIHandler.getCategories();
-    setState(() {});
-  }
-
   @override
   void initState() {
     _textEditingController = TextEditingController();
     getProducts();
-    getCategories();
     setState(() {});
     super.initState();
   }
@@ -66,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 context,
                 PageTransition(
                   type: PageTransitionType.fade,
-                  child: CategoriesScreen(categories: categories),
+                  child: const CategoriesScreen(),
                 ),
               );
             },
