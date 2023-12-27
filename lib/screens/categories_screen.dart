@@ -68,14 +68,22 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                           ),
                         ),
                         Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            categories[index].name ?? "",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              backgroundColor: lightCardColor.withOpacity(0.5),
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                            width: size.width * 0.45,
+                            decoration: BoxDecoration(
+                                color: const Color(0xFF000000).withOpacity(0.5),
+                                borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(4.0),
+                                  bottomRight: Radius.circular(4.0),
+                                )),
+                            child: Text(
+                              categories[index].name ?? "",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                  color: whiteTextColor),
                             ),
                           ),
                         )
