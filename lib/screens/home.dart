@@ -23,7 +23,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late TextEditingController _textEditingController;
   Future<List<Product>> getProducts() async {
-    final products = await APIHandler.getProducts();
+    final products = await APIHandler.getProducts(limit: "4");
     return products;
   }
 
@@ -166,8 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         context,
                                         PageTransition(
                                           type: PageTransitionType.fade,
-                                          child: FeedsScreen(
-                                              products: snapshot.requireData),
+                                          child: const FeedsScreen(),
                                         ),
                                       );
                                     },
@@ -179,9 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             GridView.builder(
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
-                                itemCount: snapshot.data!.length < 4
-                                    ? snapshot.data!.length
-                                    : 4,
+                                itemCount: snapshot.data!.length,
                                 gridDelegate:
                                     const SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
