@@ -42,13 +42,10 @@ class APIHandler {
     }
   }
 
-  static Future<List<User>> getUsers({required String limit}) async {
+  static Future<List<User>> getUsers() async {
     List<User> users = [];
     try {
-      var uri = Uri.https(baseUrl, "api/v1/users", {
-        "offset": "0",
-        "limit": limit,
-      });
+      var uri = Uri.https(baseUrl, "api/v1/users");
       var response = await http.get(uri);
       final data = (jsonDecode(response.body)) as List;
       for (var element in data) {
