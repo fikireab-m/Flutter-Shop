@@ -1,4 +1,6 @@
-class Category {
+import 'package:flutter/material.dart';
+
+class Category with ChangeNotifier {
   int? id;
   String? name;
   String? image;
