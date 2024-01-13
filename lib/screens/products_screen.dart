@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/constants/colors.dart';
 import 'package:flutter_shop/data/api_call.dart';
 import 'package:flutter_shop/models/product.dart';
 import 'package:flutter_shop/widgets/search_box.dart';
 import 'package:provider/provider.dart';
 
-import '../widgets/feeds_widget.dart';
+import '../widgets/product_widget.dart';
 
-class FeedsScreen extends StatefulWidget {
-  const FeedsScreen({Key? key}) : super(key: key);
+class ProductsScreen extends StatefulWidget {
+  const ProductsScreen({Key? key}) : super(key: key);
 
   @override
-  State<FeedsScreen> createState() => _FeedsScreenState();
+  State<ProductsScreen> createState() => _FeedsScreenState();
 }
 
-class _FeedsScreenState extends State<FeedsScreen> {
+class _FeedsScreenState extends State<ProductsScreen> {
   final ScrollController _scrollController = ScrollController();
   late TextEditingController _textEditingController;
   List<Product> products = [];
@@ -57,7 +58,8 @@ class _FeedsScreenState extends State<FeedsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // elevation: 4,
+        elevation: 4,
+        shadowColor: shadowColor,
         title: const Text('All Products'),
       ),
       body: products.isEmpty
@@ -66,7 +68,6 @@ class _FeedsScreenState extends State<FeedsScreen> {
             )
           : SingleChildScrollView(
               controller: _scrollController,
-              physics: const BouncingScrollPhysics(),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -86,8 +87,9 @@ class _FeedsScreenState extends State<FeedsScreen> {
                                 childAspectRatio: 0.7),
                         itemBuilder: (ctx, index) {
                           return ChangeNotifierProvider.value(
-                              value: products[index],
-                              child: const FeedsWidget());
+                            value: products[index],
+                            child: const ProductsWidget(),
+                          );
                         }),
                     if (_isLoading)
                       const Center(child: CircularProgressIndicator()),

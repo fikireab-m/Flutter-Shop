@@ -4,10 +4,10 @@ import 'package:flutter_shop/constants/colors.dart';
 import 'package:flutter_shop/data/api_call.dart';
 import 'package:flutter_shop/models/product.dart';
 import 'package:flutter_shop/screens/categories_screen.dart';
-import 'package:flutter_shop/screens/feeds_screen.dart';
+import 'package:flutter_shop/screens/products_screen.dart';
 import 'package:flutter_shop/screens/users_screen.dart';
 import 'package:flutter_shop/widgets/appbar_icons.dart';
-import 'package:flutter_shop/widgets/feeds_widget.dart';
+import 'package:flutter_shop/widgets/product_widget.dart';
 import 'package:flutter_shop/widgets/sale_widget.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:card_swiper/card_swiper.dart';
@@ -114,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             const Text(
                               "Show all products",
                               style: TextStyle(
-                                fontWeight: FontWeight.w600,
+                                fontWeight: FontWeight.w500,
                                 fontSize: 18.0,
                               ),
                             ),
@@ -125,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   context,
                                   PageTransition(
                                     type: PageTransitionType.fade,
-                                    child: const FeedsScreen(),
+                                    child: const ProductsScreen(),
                                   ),
                                 );
                               },
@@ -148,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           itemBuilder: (ctx, index) {
                             return ChangeNotifierProvider.value(
                               value: snapshot.data![index],
-                              child: const FeedsWidget(),
+                              child: const ProductsWidget(),
                             );
                           })
                     ],

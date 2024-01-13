@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_shop/models/product.dart';
 import 'package:provider/provider.dart';
 
-import 'feeds_widget.dart';
+import 'product_widget.dart';
 
 class FeedsGridWidget extends StatelessWidget {
   final List<Product> products;
@@ -23,7 +23,7 @@ class FeedsGridWidget extends StatelessWidget {
         itemBuilder: (ctx, index) {
           return ChangeNotifierProvider.value(
             value: products[index],
-            child: const FeedsWidget(),
+            child: const ProductsWidget(),
           );
         });
   }

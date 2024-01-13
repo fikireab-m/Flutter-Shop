@@ -7,8 +7,8 @@ import 'package:flutter_shop/screens/product_details_screen.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
-class FeedsWidget extends StatelessWidget {
-  const FeedsWidget({Key? key}) : super(key: key);
+class ProductsWidget extends StatelessWidget {
+  const ProductsWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
