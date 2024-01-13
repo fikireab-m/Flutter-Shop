@@ -1,6 +1,4 @@
-# flutter_shop
-
-Flutter shop
+# Flutter shop
 
 ## Getting Started
 
