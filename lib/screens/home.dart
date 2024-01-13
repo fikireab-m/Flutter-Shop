@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
       },
       child: Scaffold(
         appBar: AppBar(
-          // elevation: 4,
+          elevation: 4,
           title: const Text('Home'),
           leading: AppBarIcons(
             function: () {

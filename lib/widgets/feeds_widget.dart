@@ -12,56 +12,34 @@ class FeedsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     final Product product = Provider.of<Product>(context);
     return Padding(
-      padding: const EdgeInsets.all(2.0),
+      padding: const EdgeInsets.all(4.0),
       child: Material(
+        elevation: 8.0,
         borderRadius: BorderRadius.circular(8.0),
         color: Theme.of(context).cardColor,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(8.0),
-          onTap: () {
-            Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.fade,
-                child: ProductDetails(product: product),
-              ),
-            );
-          },
+        child: SizedBox(
+          height: 240.0,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 5, right: 5, top: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      child: RichText(
-                        text: TextSpan(
-                            text: '\$',
-                            style: const TextStyle(
-                                color: Color.fromRGBO(33, 150, 243, 1)),
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: '${product.price}',
-                                  style: TextStyle(
-                                      color: lightTextColor,
-                                      fontWeight: FontWeight.w600)),
-                            ]),
-                      ),
-                    ),
-                    const Icon(IconlyBold.heart),
-                  ],
+              InkWell(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(8),
+                  topRight: Radius.circular(8),
                 ),
-              ),
-              const SizedBox(height: 8.0),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                      type: PageTransitionType.fade,
+                      child: ProductDetails(product: product),
+                    ),
+                  );
+                },
                 child: FancyShimmerImage(
-                  height: size.height * 0.2,
+                  height: 180,
                   width: double.infinity,
                   errorWidget: const Icon(
                     IconlyBold.danger,
@@ -72,21 +50,48 @@ class FeedsWidget extends StatelessWidget {
                   boxFit: BoxFit.fill,
                 ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 8),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
                 child: Text(
                   '${product.title}',
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                   style: const TextStyle(
-                    fontSize: 17,
+                    fontSize: 16,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
               ),
-              SizedBox(
-                height: size.height * 0.01,
+              Padding(
+                padding: const EdgeInsets.only(left: 8, right: 8, bottom: 4),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: RichText(
+                        text: TextSpan(
+                            text: '\$',
+                            style: const TextStyle(
+                              color: Color.fromRGBO(33, 150, 243, 1),
+                            ),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: '${product.price}',
+                                style: TextStyle(
+                                  color: lightTextColor,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ]),
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.add_shopping_cart_outlined),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
