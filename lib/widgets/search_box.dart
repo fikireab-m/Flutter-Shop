@@ -14,15 +14,15 @@ class SearchBox extends StatelessWidget {
       decoration: InputDecoration(
           hintText: "Search",
           filled: true,
-          fillColor: Theme.of(context).inputDecorationTheme.fillColor,
+          fillColor: shadowColor,
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(16.0),
             borderSide: BorderSide(
               color: Theme.of(context).cardColor,
             ),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(16.0),
             borderSide: BorderSide(
               width: 1,
               color: Theme.of(context).colorScheme.secondary,

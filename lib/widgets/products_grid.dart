@@ -16,8 +16,8 @@ class FeedsGridWidget extends StatelessWidget {
         itemCount: products.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 12.0,
-          mainAxisSpacing: 12.0,
+          crossAxisSpacing: 0.0,
+          mainAxisSpacing: 0.0,
           childAspectRatio: 0.6,
         ),
         itemBuilder: (ctx, index) {
