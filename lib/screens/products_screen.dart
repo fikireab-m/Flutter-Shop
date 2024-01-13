@@ -68,6 +68,7 @@ class _FeedsScreenState extends State<ProductsScreen> {
             )
           : SingleChildScrollView(
               controller: _scrollController,
+              physics: const BouncingScrollPhysics(),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
