@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/data/api_call.dart';
 import 'package:flutter_shop/models/product.dart';
+import 'package:flutter_shop/widgets/search_box.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/feeds_widget.dart';
@@ -14,6 +15,7 @@ class FeedsScreen extends StatefulWidget {
 
 class _FeedsScreenState extends State<FeedsScreen> {
   final ScrollController _scrollController = ScrollController();
+  late TextEditingController _textEditingController;
   List<Product> products = [];
   int limit = 10;
   bool _isLoading = false;
@@ -40,8 +42,15 @@ class _FeedsScreenState extends State<FeedsScreen> {
 
   @override
   void initState() {
+    _textEditingController = TextEditingController();
     getProducts();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    super.dispose();
   }
 
   @override
@@ -58,25 +67,32 @@ class _FeedsScreenState extends State<FeedsScreen> {
           : SingleChildScrollView(
               controller: _scrollController,
               physics: const BouncingScrollPhysics(),
-              child: Column(
-                children: [
-                  GridView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: products.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 0.0,
-                              mainAxisSpacing: 0.0,
-                              childAspectRatio: 0.7),
-                      itemBuilder: (ctx, index) {
-                        return ChangeNotifierProvider.value(
-                            value: products[index], child: const FeedsWidget());
-                      }),
-                  if (_isLoading)
-                    const Center(child: CircularProgressIndicator()),
-                ],
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 8),
+                    SearchBox(controller: _textEditingController),
+                    const SizedBox(height: 8),
+                    GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: products.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 0.0,
+                                mainAxisSpacing: 0.0,
+                                childAspectRatio: 0.7),
+                        itemBuilder: (ctx, index) {
+                          return ChangeNotifierProvider.value(
+                              value: products[index],
+                              child: const FeedsWidget());
+                        }),
+                    if (_isLoading)
+                      const Center(child: CircularProgressIndicator()),
+                  ],
+                ),
               ),
             ),
     );
