@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AppBarIcons extends StatelessWidget {
-  const AppBarIcons({Key? key, required this.function, required this.icon})
+class AppIconBtn extends StatelessWidget {
+  const AppIconBtn({Key? key, required this.function, required this.icon})
       : super(key: key);
   final Function function;
   final IconData icon;

@@ -33,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+  List<Product> cartItems = [];
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -46,8 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
           shadowColor: shadowColor,
           centerTitle: false,
           title: const Text('Home'),
-          leading: AppBarIcons(
-            function: () {
+          leading: IconButton(
+            onPressed: () {
               Navigator.push(
                 context,
                 PageTransition(
@@ -56,8 +57,25 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               );
             },
-            icon: IconlyBold.category,
+            icon: const Icon(Icons.category_outlined),
           ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                      type: PageTransitionType.fade,
+                      child: ShopingCart(cartItems: cartItems),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.shopping_cart_checkout_outlined),
+              ),
+            ),
+          ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -106,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             const Spacer(),
-                            AppBarIcons(
+                            AppIconBtn(
                               function: () {
                                 Navigator.push(
                                   context,
