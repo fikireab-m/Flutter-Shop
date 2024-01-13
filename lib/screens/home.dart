@@ -86,74 +86,72 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Text("Something went wrong"),
                   );
                 }
-                return Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: size.height * 0.25,
-                          child: Swiper(
-                            itemCount: 3,
-                            itemBuilder: (ctx, index) {
-                              return const SaleWidget();
-                            },
-                            autoplay: true,
-                            pagination: const SwiperPagination(
-                              alignment: Alignment.bottomCenter,
-                              builder: DotSwiperPaginationBuilder(
-                                color: Colors.white,
-                                activeColor: Colors.red,
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: size.height * 0.25,
+                        child: Swiper(
+                          itemCount: 3,
+                          itemBuilder: (ctx, index) {
+                            return const SaleWidget();
+                          },
+                          autoplay: true,
+                          pagination: const SwiperPagination(
+                            alignment: Alignment.bottomCenter,
+                            builder: DotSwiperPaginationBuilder(
+                              color: Colors.white,
+                              activeColor: Colors.red,
+                            ),
+                          ),
+                          // control: const SwiperControl(),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            const Text(
+                              "Show all products",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18.0,
                               ),
                             ),
-                            // control: const SwiperControl(),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              const Text(
-                                "Show all products",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 18.0,
-                                ),
-                              ),
-                              const Spacer(),
-                              AppBarIcons(
-                                function: () {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      child: const FeedsScreen(),
-                                    ),
-                                  );
-                                },
-                                icon: IconlyBold.arrowRight2,
-                              ),
-                            ],
-                          ),
-                        ),
-                        GridView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: snapshot.data!.length,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 0.0,
-                              mainAxisSpacing: 0.0,
-                              childAspectRatio: 0.7,
+                            const Spacer(),
+                            AppBarIcons(
+                              function: () {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.fade,
+                                    child: const FeedsScreen(),
+                                  ),
+                                );
+                              },
+                              icon: IconlyBold.arrowRight2,
                             ),
-                            itemBuilder: (ctx, index) {
-                              return ChangeNotifierProvider.value(
-                                value: snapshot.data![index],
-                                child: const FeedsWidget(),
-                              );
-                            })
-                      ],
-                    ),
+                          ],
+                        ),
+                      ),
+                      GridView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: snapshot.data!.length,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 0.0,
+                            mainAxisSpacing: 0.0,
+                            childAspectRatio: 0.7,
+                          ),
+                          itemBuilder: (ctx, index) {
+                            return ChangeNotifierProvider.value(
+                              value: snapshot.data![index],
+                              child: const FeedsWidget(),
+                            );
+                          })
+                    ],
                   ),
                 );
               }),
