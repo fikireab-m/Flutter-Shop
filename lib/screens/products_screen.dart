@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_shop/constants/colors.dart';
 import 'package:flutter_shop/data/api_call.dart';
 import 'package:flutter_shop/models/product.dart';
+import 'package:flutter_shop/screens/cart_screen.dart';
+import 'package:flutter_shop/widgets/appbar_icons.dart';
 import 'package:flutter_shop/widgets/search_box.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/product_widget.dart';
@@ -61,6 +64,24 @@ class _FeedsScreenState extends State<ProductsScreen> {
         elevation: 4,
         shadowColor: shadowColor,
         title: const Text('All Products'),
+        centerTitle: false,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    type: PageTransitionType.fade,
+                    child: const ShopingCart(cartItems: []),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.shopping_cart_checkout_outlined),
+            ),
+          ),
+        ],
       ),
       body: products.isEmpty
           ? const Center(

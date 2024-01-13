@@ -14,10 +14,11 @@ class FeedsGridWidget extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemCount: products.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 0.0,
-            mainAxisSpacing: 0.0,
-            childAspectRatio: 0.6),
+          crossAxisCount: 2,
+          crossAxisSpacing: 0.0,
+          mainAxisSpacing: 0.0,
+          childAspectRatio: 0.6,
+        ),
         itemBuilder: (ctx, index) {
           return ChangeNotifierProvider.value(
             value: products[index],

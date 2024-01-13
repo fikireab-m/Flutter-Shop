@@ -3,9 +3,9 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_shop/constants/colors.dart';
 import 'package:flutter_shop/data/api_call.dart';
 import 'package:flutter_shop/models/product.dart';
+import 'package:flutter_shop/screens/cart_screen.dart';
 import 'package:flutter_shop/screens/categories_screen.dart';
 import 'package:flutter_shop/screens/products_screen.dart';
-import 'package:flutter_shop/screens/users_screen.dart';
 import 'package:flutter_shop/widgets/appbar_icons.dart';
 import 'package:flutter_shop/widgets/product_widget.dart';
 import 'package:flutter_shop/widgets/sale_widget.dart';
@@ -44,6 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           elevation: 4,
           shadowColor: shadowColor,
+          centerTitle: false,
           title: const Text('Home'),
           leading: AppBarIcons(
             function: () {
@@ -57,20 +58,6 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             icon: IconlyBold.category,
           ),
-          actions: [
-            AppBarIcons(
-              function: () {
-                Navigator.push(
-                  context,
-                  PageTransition(
-                    type: PageTransitionType.fade,
-                    child: const UsersScreen(),
-                  ),
-                );
-              },
-              icon: IconlyBold.user3,
-            ),
-          ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
