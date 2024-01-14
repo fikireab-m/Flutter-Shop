@@ -4,6 +4,7 @@ import 'package:flutter_shop/data/api_call.dart';
 import 'package:flutter_shop/models/product.dart';
 import 'package:flutter_shop/screens/cart_screen.dart';
 import 'package:flutter_shop/widgets/appbar_icons.dart';
+import 'package:flutter_shop/widgets/products_grid.dart';
 import 'package:flutter_shop/widgets/search_box.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -59,6 +60,7 @@ class _FeedsScreenState extends State<ProductsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final sc = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         elevation: 4,
@@ -97,22 +99,7 @@ class _FeedsScreenState extends State<ProductsScreen> {
                     const SizedBox(height: 8),
                     SearchBox(controller: _textEditingController),
                     const SizedBox(height: 8),
-                    GridView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: products.length,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                crossAxisSpacing: 0.0,
-                                mainAxisSpacing: 0.0,
-                                childAspectRatio: 0.7),
-                        itemBuilder: (ctx, index) {
-                          return ChangeNotifierProvider.value(
-                            value: products[index],
-                            child: const ProductsWidget(),
-                          );
-                        }),
+                    ProductGrid(products: products),
                     if (_isLoading)
                       const Center(child: CircularProgressIndicator()),
                   ],

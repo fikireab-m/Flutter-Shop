@@ -8,6 +8,7 @@ import 'package:flutter_shop/screens/categories_screen.dart';
 import 'package:flutter_shop/screens/products_screen.dart';
 import 'package:flutter_shop/widgets/appbar_icons.dart';
 import 'package:flutter_shop/widgets/product_widget.dart';
+import 'package:flutter_shop/widgets/products_grid.dart';
 import 'package:flutter_shop/widgets/sale_widget.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:card_swiper/card_swiper.dart';
@@ -91,6 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Text("Something went wrong"),
                   );
                 }
+                final products = snapshot.data!;
                 return SingleChildScrollView(
                   child: Column(
                     children: [
@@ -139,23 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                       ),
-                      GridView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: snapshot.data!.length,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 0.0,
-                            mainAxisSpacing: 0.0,
-                            childAspectRatio: 0.7,
-                          ),
-                          itemBuilder: (ctx, index) {
-                            return ChangeNotifierProvider.value(
-                              value: snapshot.data![index],
-                              child: const ProductsWidget(),
-                            );
-                          })
+                      ProductGrid(products: products),
                     ],
                   ),
                 );

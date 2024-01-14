@@ -3,18 +3,19 @@ import 'package:provider/provider.dart';
 import 'package:flutter_shop/models/product.dart';
 import 'package:flutter_shop/widgets/product_widget.dart';
 
-class FeedsGridWidget extends StatelessWidget {
+class ProductGrid extends StatelessWidget {
   final List<Product> products;
-  const FeedsGridWidget({Key? key, required this.products}) : super(key: key);
+  const ProductGrid({Key? key, required this.products}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final sc = MediaQuery.of(context).size;
     return GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: products.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: sc.width ~/ 180,
           crossAxisSpacing: 0.0,
           mainAxisSpacing: 0.0,
           childAspectRatio: 0.6,
