@@ -91,6 +91,9 @@ class _FeedsScreenState extends State<ProductsScreen> {
                   decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(Images.bgImg),
+                      // opacity: 0.5,
+                      colorFilter: ColorFilter.srgbToLinearGamma(),
+                      opacity: 0.6,
                       fit: BoxFit.cover,
                     ),
                   ),
