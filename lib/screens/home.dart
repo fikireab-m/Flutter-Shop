@@ -125,6 +125,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 scrollController: _scrollController,
               );
             }),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            Navigator.of(context).push(PageTransition(
+              type: PageTransitionType.bottomToTop,
+              child: const ProductsScreen(),
+            ));
+          },
+          label: const Text("View all products"),
+          icon: const Icon(Icons.arrow_forward),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(32.0),
+          ),
+        ),
       ),
     );
   }

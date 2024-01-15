@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/constants/colors.dart';
 import 'package:flutter_shop/models/product.dart';
 import 'package:flutter_shop/widgets/product_widget.dart';
 import 'package:provider/provider.dart';
@@ -33,11 +34,12 @@ class PageLayout extends StatelessWidget {
             pinned: true,
             snap: false,
             floating: false,
-            expandedHeight: extentHeight ?? constraints.maxHeight / 3,
+            expandedHeight: extentHeight ?? constraints.maxHeight / 4,
             centerTitle: false,
             automaticallyImplyLeading: false,
             leading: leading,
             actions: appbarActions,
+            titleTextStyle: TextStyle(color: lightTextColor),
             flexibleSpace: FlexibleSpaceBar(
               title: appBarTitle,
               background: bgWidget,

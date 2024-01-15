@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/constants/paths.dart';
 import 'package:flutter_shop/data/api_call.dart';
 import 'package:flutter_shop/models/product.dart';
 import 'package:flutter_shop/screens/cart_screen.dart';
@@ -60,14 +61,24 @@ class _FeedsScreenState extends State<ProductsScreen> {
               )
             : PageLayout(
                 products: products,
-                bgWidget: Column(
-                  children: [
-                    const Expanded(child: SizedBox()),
-                    SearchBox(controller: _textEditingController),
-                  ],
+                bgWidget: Container(
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(Images.bgImg),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0,
+                        vertical: 16.0,
+                      ),
+                      child: SearchBox(controller: _textEditingController),
+                    ),
+                  ),
                 ),
                 scrollController: _scrollController,
-                extentHeight: 160.0,
                 appBarTitle: const Text('All Products'),
                 leading: IconButton(
                   onPressed: () => Navigator.pop(context),
