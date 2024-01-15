@@ -6,7 +6,8 @@ import 'package:flutter_shop/models/product.dart';
 import 'package:flutter_shop/screens/cart_screen.dart';
 import 'package:flutter_shop/screens/categories_screen.dart';
 import 'package:flutter_shop/screens/products_screen.dart';
-import 'package:flutter_shop/widgets/appbar_icons.dart';
+import 'package:flutter_shop/widgets/icon_button.dart';
+import 'package:flutter_shop/widgets/page_layout.dart';
 import 'package:flutter_shop/widgets/product_widget.dart';
 import 'package:flutter_shop/widgets/products_grid.dart';
 import 'package:flutter_shop/widgets/sale_widget.dart';
@@ -78,75 +79,40 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: FutureBuilder<List<Product>>(
-              future: getProducts(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (snapshot.hasError) {
-                  return const Center(
-                    child: Text("Something went wrong"),
-                  );
-                }
-                final products = snapshot.data!;
-                return SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: size.height * 0.25,
-                        child: Swiper(
-                          itemCount: 3,
-                          itemBuilder: (ctx, index) {
-                            return const SaleWidget();
-                          },
-                          autoplay: true,
-                          pagination: const SwiperPagination(
-                            alignment: Alignment.bottomCenter,
-                            builder: DotSwiperPaginationBuilder(
-                              color: Colors.white,
-                              activeColor: Colors.red,
-                            ),
-                          ),
-                          // control: const SwiperControl(),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            const Text(
-                              "Show all products",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18.0,
-                              ),
-                            ),
-                            const Spacer(),
-                            AppIconBtn(
-                              function: () {
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.fade,
-                                    child: const ProductsScreen(),
-                                  ),
-                                );
-                              },
-                              icon: IconlyBold.arrowRight2,
-                            ),
-                          ],
-                        ),
-                      ),
-                      ProductGrid(products: products),
-                    ],
-                  ),
+        body: FutureBuilder<List<Product>>(
+            future: getProducts(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return const Center(
+                  child: CircularProgressIndicator(),
                 );
-              }),
-        ),
+              } else if (snapshot.hasError) {
+                return const Center(
+                  child: Text("Something went wrong"),
+                );
+              }
+              final products = snapshot.data!;
+              return PageLayout(
+                products: products,
+                bgWidget: SizedBox(
+                  child: Swiper(
+                    itemCount: 3,
+                    itemBuilder: (context, index) {
+                      return const SaleWidget();
+                    },
+                    autoplay: true,
+                    pagination: const SwiperPagination(
+                      alignment: Alignment.bottomCenter,
+                      builder: DotSwiperPaginationBuilder(
+                        color: Colors.white,
+                        activeColor: Colors.red,
+                      ),
+                    ),
+                    // control: const SwiperControl(),
+                  ),
+                ),
+              );
+            }),
       ),
     );
   }

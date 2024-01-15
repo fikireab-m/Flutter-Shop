@@ -20,9 +20,9 @@ class ProductsWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
         color: Theme.of(context).cardColor,
         child: SizedBox(
-          height: 240.0,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
               InkWell(
                 borderRadius: const BorderRadius.only(
