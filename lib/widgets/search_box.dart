@@ -8,30 +8,33 @@ class SearchBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
-      keyboardType: TextInputType.text,
-      decoration: InputDecoration(
-          hintText: "Search",
-          filled: true,
-          fillColor: lightCardColor,
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16.0),
-            borderSide: BorderSide(
-              color: Theme.of(context).cardColor,
+    return SizedBox(
+      height: 56.0,
+      child: TextField(
+        controller: controller,
+        keyboardType: TextInputType.text,
+        decoration: InputDecoration(
+            hintText: "Search",
+            filled: true,
+            fillColor: lightCardColor,
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.0),
+              borderSide: BorderSide(
+                color: Theme.of(context).cardColor,
+              ),
             ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16.0),
-            borderSide: BorderSide(
-              width: 1,
-              color: Theme.of(context).colorScheme.secondary,
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.0),
+              borderSide: BorderSide(
+                width: 1,
+                color: Theme.of(context).colorScheme.secondary,
+              ),
             ),
-          ),
-          suffixIcon: Icon(
-            IconlyLight.search,
-            color: lightIconsColor,
-          )),
+            suffixIcon: Icon(
+              IconlyLight.search,
+              color: lightIconsColor,
+            )),
+      ),
     );
   }
 }
