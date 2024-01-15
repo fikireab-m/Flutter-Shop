@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/constants/colors.dart';
 import 'package:flutter_shop/constants/paths.dart';
 import 'package:flutter_shop/data/api_call.dart';
 import 'package:flutter_shop/models/product.dart';
@@ -51,16 +52,41 @@ class _FeedsScreenState extends State<ProductsScreen> {
     super.dispose();
   }
 
+  List<Product> cartItems = [];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          elevation: 4,
+          shadowColor: shadowColor,
+          centerTitle: false,
+          title: const Text('Products'),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                      type: PageTransitionType.rightToLeftWithFade,
+                      child: ShopingCart(cartItems: cartItems),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.shopping_cart_checkout_outlined),
+              ),
+            ),
+          ],
+        ),
         body: products.isEmpty
             ? const Center(
                 child: CircularProgressIndicator(),
               )
             : PageLayout(
                 products: products,
+                extentHeight: 120,
                 bgWidget: Container(
                   decoration: const BoxDecoration(
                     image: DecorationImage(
@@ -79,28 +105,6 @@ class _FeedsScreenState extends State<ProductsScreen> {
                   ),
                 ),
                 scrollController: _scrollController,
-                appBarTitle: const Text('All Products'),
-                leading: IconButton(
-                  onPressed: () => Navigator.pop(context),
-                  icon: const Icon(Icons.arrow_back),
-                ),
-                appbarActions: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeftWithFade,
-                            child: const ShopingCart(cartItems: []),
-                          ),
-                        );
-                      },
-                      icon: const Icon(Icons.shopping_cart_checkout_outlined),
-                    ),
-                  ),
-                ],
               ),
       ),
     );

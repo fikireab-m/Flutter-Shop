@@ -134,6 +134,8 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           label: const Text("View all products"),
           icon: const Icon(Icons.arrow_forward),
+          backgroundColor: lightCardColor,
+          elevation: 8.0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(32.0),
           ),

@@ -31,7 +31,7 @@ class PageLayout extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         slivers: [
           SliverAppBar(
-            pinned: true,
+            pinned: false,
             snap: false,
             floating: false,
             expandedHeight: extentHeight ?? constraints.maxHeight / 4,
