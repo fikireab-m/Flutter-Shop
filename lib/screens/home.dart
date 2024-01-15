@@ -23,6 +23,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final ScrollController _scrollController = ScrollController();
   Future<List<Product>> getProducts() async {
     final products = await APIHandler.getProducts(limit: "4");
     return products;
@@ -35,10 +36,25 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+  @override
+  void didChangeDependencies() {
+    _scrollController.addListener(() async {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        Navigator.of(context).push(
+          PageTransition(
+            type: PageTransitionType.bottomToTop,
+            child: const ProductsScreen(),
+          ),
+        );
+      }
+    });
+    super.didChangeDependencies();
+  }
+
   List<Product> cartItems = [];
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -111,6 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     // control: const SwiperControl(),
                   ),
                 ),
+                scrollController: _scrollController,
               );
             }),
       ),
