@@ -28,6 +28,7 @@ class PageLayout extends StatelessWidget {
     return LayoutBuilder(builder: (context, constraints) {
       return CustomScrollView(
         controller: scrollController,
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         physics: const BouncingScrollPhysics(),
         slivers: [
           SliverAppBar(
@@ -50,7 +51,8 @@ class PageLayout extends StatelessWidget {
               crossAxisCount: constraints.maxWidth ~/ 180,
               mainAxisSpacing: 4.0,
               crossAxisSpacing: 4.0,
-              childAspectRatio: 0.7,
+              childAspectRatio:
+                  constraints.maxWidth / constraints.maxHeight + 0.21,
             ),
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {

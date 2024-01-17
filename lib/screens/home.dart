@@ -103,26 +103,29 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               }
               final products = snapshot.data!;
-              return PageLayout(
-                products: products,
-                bgWidget: SizedBox(
-                  child: Swiper(
-                    itemCount: 3,
-                    itemBuilder: (context, index) {
-                      return const SaleWidget();
-                    },
-                    autoplay: true,
-                    pagination: const SwiperPagination(
-                      alignment: Alignment.bottomCenter,
-                      builder: DotSwiperPaginationBuilder(
-                        color: Colors.white,
-                        activeColor: Colors.red,
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: PageLayout(
+                  products: products,
+                  bgWidget: SizedBox(
+                    child: Swiper(
+                      itemCount: 3,
+                      itemBuilder: (context, index) {
+                        return const SaleWidget();
+                      },
+                      autoplay: true,
+                      pagination: const SwiperPagination(
+                        alignment: Alignment.bottomCenter,
+                        builder: DotSwiperPaginationBuilder(
+                          color: Colors.white,
+                          activeColor: Colors.red,
+                        ),
                       ),
+                      // control: const SwiperControl(),
                     ),
-                    // control: const SwiperControl(),
                   ),
+                  scrollController: _scrollController,
                 ),
-                scrollController: _scrollController,
               );
             }),
         floatingActionButton: FloatingActionButton.extended(

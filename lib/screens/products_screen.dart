@@ -84,29 +84,32 @@ class _FeedsScreenState extends State<ProductsScreen> {
             ? const Center(
                 child: CircularProgressIndicator(),
               )
-            : PageLayout(
-                products: products,
-                extentHeight: 120,
-                bgWidget: Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(Images.bgImg),
-                      colorFilter: ColorFilter.srgbToLinearGamma(),
-                      opacity: 0.6,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8.0,
-                        vertical: 16.0,
+            : Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: PageLayout(
+                  products: products,
+                  extentHeight: 120,
+                  bgWidget: Container(
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(Images.bgImg),
+                        colorFilter: ColorFilter.srgbToLinearGamma(),
+                        opacity: 0.6,
+                        fit: BoxFit.cover,
                       ),
-                      child: SearchBox(controller: _textEditingController),
+                    ),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8.0,
+                          vertical: 16.0,
+                        ),
+                        child: SearchBox(controller: _textEditingController),
+                      ),
                     ),
                   ),
+                  scrollController: _scrollController,
                 ),
-                scrollController: _scrollController,
               ),
       ),
     );
