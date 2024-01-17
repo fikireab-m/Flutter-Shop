@@ -91,11 +91,11 @@ class ProductDetails extends StatelessWidget {
                   },
                   autoplay: true,
                   itemCount: product.images!.length,
-                  pagination: const SwiperPagination(
+                  pagination: SwiperPagination(
                     alignment: Alignment.bottomCenter,
                     builder: DotSwiperPaginationBuilder(
-                      color: Colors.white,
-                      activeColor: Colors.red,
+                      color: whiteTextColor,
+                      activeColor: lightIconsColor,
                     ),
                   ),
                   // control: const SwiperControl(),

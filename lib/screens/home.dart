@@ -114,11 +114,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         return const SaleWidget();
                       },
                       autoplay: true,
-                      pagination: const SwiperPagination(
+                      pagination: SwiperPagination(
                         alignment: Alignment.bottomCenter,
                         builder: DotSwiperPaginationBuilder(
-                          color: Colors.white,
-                          activeColor: Colors.red,
+                          color: whiteTextColor,
+                          activeColor: lightIconsColor,
                         ),
                       ),
                       // control: const SwiperControl(),
