@@ -2,7 +2,9 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/constants/colors.dart';
+import 'package:flutter_shop/models/cart.dart';
 import 'package:flutter_shop/models/product.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetails extends StatelessWidget {
   final Product product;
@@ -127,7 +129,9 @@ class ProductDetails extends StatelessWidget {
                   width: double.infinity,
                   child: Center(
                     child: ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.read<CartModel>().addToCart(product);
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: lightIconsColor,
                           padding: const EdgeInsets.symmetric(

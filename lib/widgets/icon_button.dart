@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/constants/colors.dart';
 
 class AppIconBtn extends StatelessWidget {
   const AppIconBtn({Key? key, required this.function, required this.icon})
@@ -20,7 +21,10 @@ class AppIconBtn extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.all(6.0),
-              child: Icon(icon),
+              child: Icon(
+                icon,
+                color: lightIconsColor,
+              ),
             ),
           )),
     );
