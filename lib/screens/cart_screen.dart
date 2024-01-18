@@ -76,7 +76,10 @@ class ShopingCart extends StatelessWidget {
                             imageUrl: cartItems[index].images![0],
                             boxFit: BoxFit.fill,
                           ),
-                          title: Text("${cartItems[index].title}"),
+                          title: Text(
+                            "${cartItems[index].title}",
+                            overflow: TextOverflow.ellipsis,
+                          ),
                           subtitle: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
@@ -89,7 +92,7 @@ class ShopingCart extends StatelessWidget {
                                 children: [
                                   AppIconBtn(
                                     function: () {},
-                                    icon: Icons.exposure_minus_1,
+                                    icon: Icons.remove_outlined,
                                   ),
                                   Container(
                                     width: 64,
@@ -110,7 +113,7 @@ class ShopingCart extends StatelessWidget {
                                   ),
                                   AppIconBtn(
                                     function: () {},
-                                    icon: Icons.plus_one,
+                                    icon: Icons.add_outlined,
                                   )
                                 ],
                               )
