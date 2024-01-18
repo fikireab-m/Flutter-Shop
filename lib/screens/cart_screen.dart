@@ -2,17 +2,19 @@ import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_shop/constants/colors.dart';
+import 'package:flutter_shop/models/cart.dart';
 import 'package:flutter_shop/models/product.dart';
 import 'package:flutter_shop/screens/products_screen.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class ShopingCart extends StatelessWidget {
-  final List<Product> cartItems;
-  const ShopingCart({Key? key, required this.cartItems}) : super(key: key);
+  const ShopingCart({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final List<Product> cartItems = context.watch<CartModel>().getCartItems;
     return Scaffold(
       appBar: AppBar(title: const Text("Cart Items")),
       body: cartItems.isEmpty
@@ -69,11 +71,12 @@ class ShopingCart extends StatelessWidget {
                     boxFit: BoxFit.fill,
                   ),
                   title: Text("${cartItems[index].title}"),
-                  subtitle: Text("${cartItems[index].category}"),
+                  subtitle: Text("${cartItems[index].category!.name}"),
                   trailing: Text(
-                    "${cartItems[index].price}",
-                    style: TextStyle(
-                      color: lightIconsColor,
+                    "\$${cartItems[index].price}",
+                    style: const TextStyle(
+                      color: Colors.blue,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

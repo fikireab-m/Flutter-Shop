@@ -71,7 +71,7 @@ class _FeedsScreenState extends State<ProductsScreen> {
                     context,
                     PageTransition(
                       type: PageTransitionType.rightToLeftWithFade,
-                      child: ShopingCart(cartItems: cartItems),
+                      child: const ShopingCart(),
                     ),
                   );
                 },

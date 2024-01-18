@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_shop/models/cart.dart';
 import 'package:flutter_shop/screens/home.dart';
 import 'package:flutter_shop/theme.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then(
-    (_) => runApp(const MyApp()),
+    (_) => runApp(ChangeNotifierProvider(
+      create: (context) => CartModel(),
+      child: const MyApp(),
+    )),
   );
 }
 

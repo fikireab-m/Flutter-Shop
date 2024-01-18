@@ -2,6 +2,7 @@ import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_shop/constants/colors.dart';
+import 'package:flutter_shop/models/cart.dart';
 import 'package:flutter_shop/models/product.dart';
 import 'package:flutter_shop/screens/product_details_screen.dart';
 import 'package:page_transition/page_transition.dart';
@@ -87,7 +88,9 @@ class ProductsWidget extends StatelessWidget {
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.read<CartModel>().addToCart(product);
+                      },
                       icon: const Icon(Icons.add_shopping_cart_outlined),
                     ),
                   ],

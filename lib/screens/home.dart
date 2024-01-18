@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     context,
                     PageTransition(
                       type: PageTransitionType.rightToLeftWithFade,
-                      child: ShopingCart(cartItems: cartItems),
+                      child: const ShopingCart(),
                     ),
                   );
                 },
