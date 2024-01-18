@@ -24,9 +24,9 @@ class ShopingCart extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.shopping_cart_outlined,
-                    color: shadowColor,
+                    color: ColorConst.shadowColor,
                     size: 128,
                   ),
                   const Text(
@@ -61,8 +61,8 @@ class ShopingCart extends StatelessWidget {
               itemBuilder: (ctx, index) {
                 return index < cartItems.length
                     ? Card(
-                        color: lightScaffoldColor,
-                        surfaceTintColor: lightScaffoldColor,
+                        color: ColorConst.lightScaffoldColor,
+                        surfaceTintColor: ColorConst.lightScaffoldColor,
                         elevation: 8.0,
                         child: ListTile(
                           leading: FancyShimmerImage(
@@ -100,7 +100,7 @@ class ShopingCart extends StatelessWidget {
                                         horizontal: 4),
                                     padding: const EdgeInsets.all(8),
                                     decoration: BoxDecoration(
-                                      color: lightCardColor,
+                                      color: ColorConst.lightCardColor,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: const Text(
@@ -138,12 +138,12 @@ class ShopingCart extends StatelessWidget {
                             child: ElevatedButton.icon(
                               onPressed: () {},
                               style: ElevatedButton.styleFrom(
-                                  backgroundColor: lightIconsColor,
+                                  backgroundColor: ColorConst.lightIconsColor,
                                   padding: const EdgeInsets.symmetric(
                                     vertical: 12.0,
                                     horizontal: 24.0,
                                   ),
-                                  foregroundColor: whiteTextColor),
+                                  foregroundColor: ColorConst.whiteTextColor),
                               icon: const Icon(
                                   Icons.shopping_cart_checkout_outlined),
                               label: const Text(

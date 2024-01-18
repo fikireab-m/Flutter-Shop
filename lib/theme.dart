@@ -3,25 +3,27 @@ import 'package:flutter_shop/constants/colors.dart';
 
 ThemeData themeData = ThemeData(
   colorScheme: ThemeData().colorScheme.copyWith(
-        secondary: lightIconsColor,
+        secondary: ColorConst.lightIconsColor,
         brightness: Brightness.light,
-        background: lightBackgroundColor,
+        background: ColorConst.lightBackgroundColor,
       ),
   useMaterial3: true,
-  scaffoldBackgroundColor: lightScaffoldColor,
-  primaryColor: lightCardColor,
-  appBarTheme: AppBarTheme(
+  scaffoldBackgroundColor: ColorConst.lightScaffoldColor,
+  primaryColor: ColorConst.lightCardColor,
+  appBarTheme: const AppBarTheme(
     iconTheme: IconThemeData(
-      color: lightIconsColor,
+      color: ColorConst.lightIconsColor,
     ),
-    backgroundColor: lightScaffoldColor,
+    backgroundColor: ColorConst.lightScaffoldColor,
     centerTitle: true,
     titleTextStyle: TextStyle(
-        color: lightTextColor, fontSize: 22, fontWeight: FontWeight.bold),
+        color: ColorConst.lightTextColor,
+        fontSize: 22,
+        fontWeight: FontWeight.bold),
     elevation: 0,
   ),
-  iconTheme: IconThemeData(
-    color: lightIconsColor,
+  iconTheme: const IconThemeData(
+    color: ColorConst.lightIconsColor,
   ),
 
   textSelectionTheme: const TextSelectionThemeData(
@@ -34,6 +36,6 @@ ThemeData themeData = ThemeData(
   //       bodyColor: Colors.black,
   //       displayColor: Colors.black,
   //     ),
-  cardColor: lightCardColor,
+  cardColor: ColorConst.lightCardColor,
   brightness: Brightness.light,
 );

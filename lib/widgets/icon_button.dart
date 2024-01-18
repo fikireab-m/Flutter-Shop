@@ -23,7 +23,7 @@ class AppIconBtn extends StatelessWidget {
               padding: const EdgeInsets.all(6.0),
               child: Icon(
                 icon,
-                color: lightIconsColor,
+                color: ColorConst.lightIconsColor,
               ),
             ),
           )),

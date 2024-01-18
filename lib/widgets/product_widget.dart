@@ -79,8 +79,8 @@ class ProductsWidget extends StatelessWidget {
                             children: <TextSpan>[
                               TextSpan(
                                 text: '${product.price}',
-                                style: TextStyle(
-                                  color: lightTextColor,
+                                style: const TextStyle(
+                                  color: ColorConst.lightTextColor,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),

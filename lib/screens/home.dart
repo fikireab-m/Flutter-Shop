@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         appBar: AppBar(
           elevation: 4,
-          shadowColor: shadowColor,
+          shadowColor: ColorConst.shadowColor,
           centerTitle: false,
           title: const Text('Home'),
           leading: IconButton(
@@ -114,11 +114,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         return const SaleWidget();
                       },
                       autoplay: true,
-                      pagination: SwiperPagination(
+                      pagination: const SwiperPagination(
                         alignment: Alignment.bottomCenter,
                         builder: DotSwiperPaginationBuilder(
-                          color: whiteTextColor,
-                          activeColor: lightIconsColor,
+                          color: ColorConst.whiteTextColor,
+                          activeColor: ColorConst.lightIconsColor,
                         ),
                       ),
                       // control: const SwiperControl(),
@@ -137,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           label: const Text("View all products"),
           icon: const Icon(Icons.arrow_forward),
-          backgroundColor: lightCardColor,
+          backgroundColor: ColorConst.lightCardColor,
           elevation: 8.0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(32.0),

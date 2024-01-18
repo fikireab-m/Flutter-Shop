@@ -38,7 +38,7 @@ class CategoryWidget extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: whiteTextColor,
+                color: ColorConst.whiteTextColor,
                 backgroundColor: const Color(0xFF000000).withOpacity(0.5),
               ),
             ),

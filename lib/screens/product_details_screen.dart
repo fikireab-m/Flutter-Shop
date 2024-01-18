@@ -67,8 +67,8 @@ class ProductDetails extends StatelessWidget {
                                 children: <TextSpan>[
                                   TextSpan(
                                       text: '${product.price}',
-                                      style: TextStyle(
-                                          color: lightTextColor,
+                                      style: const TextStyle(
+                                          color: ColorConst.lightTextColor,
                                           fontWeight: FontWeight.bold)),
                                 ]),
                           ),
@@ -93,11 +93,11 @@ class ProductDetails extends StatelessWidget {
                   },
                   autoplay: true,
                   itemCount: product.images!.length,
-                  pagination: SwiperPagination(
+                  pagination: const SwiperPagination(
                     alignment: Alignment.bottomCenter,
                     builder: DotSwiperPaginationBuilder(
-                      color: whiteTextColor,
-                      activeColor: lightIconsColor,
+                      color: ColorConst.whiteTextColor,
+                      activeColor: ColorConst.lightIconsColor,
                     ),
                   ),
                   // control: const SwiperControl(),
@@ -133,12 +133,12 @@ class ProductDetails extends StatelessWidget {
                         context.read<CartModel>().addToCart(product);
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: lightIconsColor,
+                          backgroundColor: ColorConst.lightIconsColor,
                           padding: const EdgeInsets.symmetric(
                             vertical: 12.0,
                             horizontal: 24.0,
                           ),
-                          foregroundColor: whiteTextColor),
+                          foregroundColor: ColorConst.whiteTextColor),
                       icon: const Icon(Icons.add_shopping_cart_outlined),
                       label: const Text(
                         "Add To Cart",

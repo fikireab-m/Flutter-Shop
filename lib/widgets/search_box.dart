@@ -16,7 +16,7 @@ class SearchBox extends StatelessWidget {
         decoration: InputDecoration(
             hintText: "Search",
             filled: true,
-            fillColor: lightCardColor,
+            fillColor: ColorConst.lightCardColor,
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16.0),
               borderSide: BorderSide(
@@ -30,9 +30,9 @@ class SearchBox extends StatelessWidget {
                 color: Theme.of(context).colorScheme.secondary,
               ),
             ),
-            suffixIcon: Icon(
+            suffixIcon: const Icon(
               IconlyLight.search,
-              color: lightIconsColor,
+              color: ColorConst.lightIconsColor,
             )),
       ),
     );

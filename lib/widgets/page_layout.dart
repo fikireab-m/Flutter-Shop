@@ -40,7 +40,7 @@ class PageLayout extends StatelessWidget {
             automaticallyImplyLeading: false,
             leading: leading,
             actions: appbarActions,
-            titleTextStyle: TextStyle(color: lightTextColor),
+            titleTextStyle: const TextStyle(color: ColorConst.lightTextColor),
             flexibleSpace: FlexibleSpaceBar(
               title: appBarTitle,
               background: bgWidget,

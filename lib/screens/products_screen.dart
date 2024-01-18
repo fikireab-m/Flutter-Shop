@@ -59,7 +59,7 @@ class _FeedsScreenState extends State<ProductsScreen> {
       child: Scaffold(
         appBar: AppBar(
           elevation: 4,
-          shadowColor: shadowColor,
+          shadowColor: ColorConst.shadowColor,
           centerTitle: false,
           title: const Text('Products'),
           actions: [
