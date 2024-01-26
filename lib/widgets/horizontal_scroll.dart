@@ -8,9 +8,9 @@ import "package:flutter_shop/screens/product_details_screen.dart";
 import "package:page_transition/page_transition.dart";
 import "package:provider/provider.dart";
 
-class HorizontallScroller extends StatelessWidget {
+class ProductListView extends StatelessWidget {
   final List<Product> products;
-  const HorizontallScroller({super.key, required this.products});
+  const ProductListView({super.key, required this.products});
   @override
   Widget build(BuildContext context) {
     return ListView.separated(

@@ -1,14 +1,20 @@
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_shop/constants/colors.dart';
 import 'package:flutter_shop/data/api_call.dart';
+import 'package:flutter_shop/models/cart.dart';
 import 'package:flutter_shop/models/product.dart';
 import 'package:flutter_shop/screens/cart_screen.dart';
 import 'package:flutter_shop/screens/categories_screen.dart';
+import 'package:flutter_shop/screens/product_details_screen.dart';
 import 'package:flutter_shop/screens/products_screen.dart';
 import 'package:flutter_shop/widgets/horizontal_scroll.dart';
+import 'package:flutter_shop/widgets/product_widget.dart';
 import 'package:flutter_shop/widgets/sale_widget.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -142,28 +148,156 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: SizedBox(
                         height: 221.0,
-                        child: HorizontallScroller(products: products),
+                        child: ProductListView(products: products),
+                      ),
+                    ),
+                    const SizedBox(height: 8.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              "Popular Products",
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            TextButton(
+                                onPressed: () => Navigator.of(context).push(
+                                      PageTransition(
+                                        type: PageTransitionType.bottomToTop,
+                                        child: const ProductsScreen(),
+                                      ),
+                                    ),
+                                child: const Text(
+                                  "View All",
+                                  style: TextStyle(fontSize: 18.0),
+                                ))
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.height - 442,
+                        child: GridView.count(
+                          crossAxisCount: 2,
+                          children: List.generate(products.length, (index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.fade,
+                                      child: ProductDetails(
+                                          product: products[index]),
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                      color: ColorConst.lightCardColor,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color:
+                                              ColorConst.lightBackgroundColor,
+                                          blurRadius: 1.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(2.0, 2.0),
+                                        )
+                                      ]),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        child: FancyShimmerImage(
+                                          height: 100,
+                                          width: double.infinity,
+                                          errorWidget: const Icon(
+                                            IconlyBold.danger,
+                                            color: Colors.red,
+                                            size: 28,
+                                          ),
+                                          imageUrl: products[index].images![0],
+                                          boxFit: BoxFit.fill,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 4, horizontal: 8),
+                                        child: Text(
+                                          '${products[index].title}',
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 8, right: 8, bottom: 4),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Flexible(
+                                              child: RichText(
+                                                text: TextSpan(
+                                                    text: '\$',
+                                                    style: const TextStyle(
+                                                      color: Color.fromRGBO(
+                                                          33, 150, 243, 1),
+                                                    ),
+                                                    children: <TextSpan>[
+                                                      TextSpan(
+                                                        text:
+                                                            '${products[index].price}',
+                                                        style: const TextStyle(
+                                                          color: ColorConst
+                                                              .lightTextColor,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                    ]),
+                                              ),
+                                            ),
+                                            IconButton(
+                                              onPressed: () {
+                                                context
+                                                    .read<CartModel>()
+                                                    .addToCart(products[index]);
+                                              },
+                                              icon: const Icon(Icons
+                                                  .add_shopping_cart_outlined),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          }),
+                        ),
                       ),
                     ),
                   ],
                 ),
               );
             }),
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            Navigator.of(context).push(PageTransition(
-              type: PageTransitionType.bottomToTop,
-              child: const ProductsScreen(),
-            ));
-          },
-          label: const Text("View all products"),
-          icon: const Icon(Icons.arrow_forward),
-          backgroundColor: ColorConst.lightCardColor,
-          elevation: 8.0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(32.0),
-          ),
-        ),
       ),
     );
   }
