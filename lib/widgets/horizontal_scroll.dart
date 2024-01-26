@@ -13,13 +13,12 @@ class HorizontallScroller extends StatelessWidget {
   const HorizontallScroller({super.key, required this.products});
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 160,
-      height: 240,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, i) {
-          return InkWell(
+    return ListView.separated(
+      scrollDirection: Axis.horizontal,
+      itemBuilder: (context, i) {
+        return SizedBox(
+          width: 140,
+          child: InkWell(
             onTap: () {
               Navigator.push(
                 context,
@@ -29,77 +28,90 @@ class HorizontallScroller extends StatelessWidget {
                 ),
               );
             },
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SizedBox(
-                  child: FancyShimmerImage(
-                    height: 100,
-                    width: double.infinity,
-                    errorWidget: const Icon(
-                      IconlyBold.danger,
-                      color: Colors.red,
-                      size: 28,
+            child: Container(
+              decoration: const BoxDecoration(
+                  color: ColorConst.lightCardColor,
+                  boxShadow: [
+                    BoxShadow(
+                      color: ColorConst.lightBackgroundColor,
+                      blurRadius: 1.0,
+                      spreadRadius: 1.0,
+                      offset: Offset(2.0, 2.0),
+                    )
+                  ]),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    child: FancyShimmerImage(
+                      height: 140,
+                      width: double.infinity,
+                      errorWidget: const Icon(
+                        IconlyBold.danger,
+                        color: Colors.red,
+                        size: 28,
+                      ),
+                      imageUrl: products[i].images![0],
+                      boxFit: BoxFit.fill,
                     ),
-                    imageUrl: products[i].images![0],
-                    boxFit: BoxFit.fill,
                   ),
-                ),
-                const SizedBox(height: 8),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
-                  child: Text(
-                    '${products[i].title}',
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                    child: Text(
+                      '${products[i].title}',
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8, right: 8, bottom: 4),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Flexible(
-                        child: RichText(
-                          text: TextSpan(
-                              text: '\$',
-                              style: const TextStyle(
-                                color: Color.fromRGBO(33, 150, 243, 1),
-                              ),
-                              children: <TextSpan>[
-                                TextSpan(
-                                  text: '${products[i].price}',
-                                  style: const TextStyle(
-                                    color: ColorConst.lightTextColor,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 8, right: 8, bottom: 4),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Flexible(
+                          child: RichText(
+                            text: TextSpan(
+                                text: '\$',
+                                style: const TextStyle(
+                                  color: Color.fromRGBO(33, 150, 243, 1),
                                 ),
-                              ]),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: '${products[i].price}',
+                                    style: const TextStyle(
+                                      color: ColorConst.lightTextColor,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ]),
+                          ),
                         ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          context.read<CartModel>().addToCart(products[i]);
-                        },
-                        icon: const Icon(Icons.add_shopping_cart_outlined),
-                      ),
-                    ],
+                        IconButton(
+                          onPressed: () {
+                            context.read<CartModel>().addToCart(products[i]);
+                          },
+                          icon: const Icon(Icons.add_shopping_cart_outlined),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          );
-        },
-        separatorBuilder: (context, i) {
-          return const SizedBox(width: 8);
-        },
-        itemCount: products.length,
-      ),
+          ),
+        );
+      },
+      separatorBuilder: (context, i) {
+        return const SizedBox(width: 12);
+      },
+      itemCount: products.length,
     );
   }
 }
