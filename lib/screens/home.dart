@@ -6,7 +6,6 @@ import 'package:flutter_shop/screens/cart_screen.dart';
 import 'package:flutter_shop/screens/categories_screen.dart';
 import 'package:flutter_shop/screens/products_screen.dart';
 import 'package:flutter_shop/widgets/horizontal_scroll.dart';
-import 'package:flutter_shop/widgets/page_layout.dart';
 import 'package:flutter_shop/widgets/sale_widget.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:card_swiper/card_swiper.dart';
@@ -104,12 +103,51 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               }
               final products = snapshot.data!;
-              return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: SizedBox(
-                    height: 221.0,
-                    child: HorizontallScroller(products: products),
-                  ));
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 220,
+                      child: Swiper(
+                        itemCount: 3,
+                        itemBuilder: (context, index) {
+                          return const SaleWidget();
+                        },
+                        autoplay: true,
+                        pagination: const SwiperPagination(
+                          alignment: Alignment.bottomCenter,
+                          builder: DotSwiperPaginationBuilder(
+                            color: ColorConst.whiteTextColor,
+                            activeColor: ColorConst.lightIconsColor,
+                          ),
+                        ),
+                        // control: const SwiperControl(),
+                      ),
+                    ),
+                    const SizedBox(height: 8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          "Latest Products",
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: SizedBox(
+                        height: 221.0,
+                        child: HorizontallScroller(products: products),
+                      ),
+                    ),
+                  ],
+                ),
+              );
             }),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
