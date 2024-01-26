@@ -5,6 +5,7 @@ import 'package:flutter_shop/models/product.dart';
 import 'package:flutter_shop/screens/cart_screen.dart';
 import 'package:flutter_shop/screens/categories_screen.dart';
 import 'package:flutter_shop/screens/products_screen.dart';
+import 'package:flutter_shop/widgets/horizontal_scroll.dart';
 import 'package:flutter_shop/widgets/page_layout.dart';
 import 'package:flutter_shop/widgets/sale_widget.dart';
 import 'package:page_transition/page_transition.dart';
@@ -20,7 +21,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final ScrollController _scrollController = ScrollController();
   Future<List<Product>> getProducts() async {
-    final products = await APIHandler.getProducts(limit: "4");
+    final products = await APIHandler.getProducts(limit: "10");
     return products;
   }
 
@@ -105,27 +106,28 @@ class _HomeScreenState extends State<HomeScreen> {
               final products = snapshot.data!;
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: PageLayout(
-                  products: products,
-                  bgWidget: SizedBox(
-                    child: Swiper(
-                      itemCount: 3,
-                      itemBuilder: (context, index) {
-                        return const SaleWidget();
-                      },
-                      autoplay: true,
-                      pagination: const SwiperPagination(
-                        alignment: Alignment.bottomCenter,
-                        builder: DotSwiperPaginationBuilder(
-                          color: ColorConst.whiteTextColor,
-                          activeColor: ColorConst.lightIconsColor,
-                        ),
-                      ),
-                      // control: const SwiperControl(),
-                    ),
-                  ),
-                  scrollController: _scrollController,
-                ),
+                child: HorizontallScroller(products: products),
+                // child: PageLayout(
+                //   products: products,
+                //   bgWidget: SizedBox(
+                //     child: Swiper(
+                //       itemCount: 3,
+                //       itemBuilder: (context, index) {
+                //         return const SaleWidget();
+                //       },
+                //       autoplay: true,
+                //       pagination: const SwiperPagination(
+                //         alignment: Alignment.bottomCenter,
+                //         builder: DotSwiperPaginationBuilder(
+                //           color: ColorConst.whiteTextColor,
+                //           activeColor: ColorConst.lightIconsColor,
+                //         ),
+                //       ),
+                //       // control: const SwiperControl(),
+                //     ),
+                //   ),
+                //   scrollController: _scrollController,
+                // ),
               );
             }),
         floatingActionButton: FloatingActionButton.extended(
