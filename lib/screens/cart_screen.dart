@@ -137,13 +137,14 @@ class ShopingCart extends StatelessWidget {
                           width: double.infinity,
                           child: Center(
                             child: ElevatedButton.icon(
-                              onPressed: () => Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  child: const CheckoutScreen(),
-                                ),
-                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.fade,
+                                      child: const CheckoutScreen(),
+                                    ));
+                              },
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: ColorConst.lightIconsColor,
                                   padding: const EdgeInsets.symmetric(

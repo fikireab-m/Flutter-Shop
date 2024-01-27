@@ -183,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: SizedBox(
-                        height: MediaQuery.of(context).size.height - 80,
+                        height: MediaQuery.of(context).size.height - 140,
                         child: GridView.count(
                           crossAxisCount: 2,
                           children: List.generate(products.length, (index) {
