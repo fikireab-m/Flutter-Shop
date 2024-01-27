@@ -10,6 +10,7 @@ import 'package:flutter_shop/screens/categories_screen.dart';
 import 'package:flutter_shop/screens/product_details_screen.dart';
 import 'package:flutter_shop/screens/products_screen.dart';
 import 'package:flutter_shop/widgets/horizontal_scroll.dart';
+import 'package:flutter_shop/widgets/page_layout.dart';
 import 'package:flutter_shop/widgets/sale_widget.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:card_swiper/card_swiper.dart';
@@ -108,194 +109,269 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               }
               final products = snapshot.data!;
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 220,
-                      child: Swiper(
-                        itemCount: 3,
-                        itemBuilder: (context, index) {
-                          return const SaleWidget();
-                        },
-                        autoplay: true,
-                        pagination: const SwiperPagination(
-                          alignment: Alignment.bottomCenter,
-                          builder: DotSwiperPaginationBuilder(
-                            color: ColorConst.whiteTextColor,
-                            activeColor: ColorConst.lightIconsColor,
-                          ),
-                        ),
-                        // control: const SwiperControl(),
-                      ),
-                    ),
-                    const SizedBox(height: 8.0),
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          "Latest Products",
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: SizedBox(
-                        height: 221.0,
-                        child: ProductListView(products: products),
-                      ),
-                    ),
-                    const SizedBox(height: 8.0),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text(
-                              "Popular Products",
-                              style: TextStyle(
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.w600,
-                              ),
+              return PageLayout(
+                  products: products,
+                  bgWidget: Column(
+                    children: [
+                      SizedBox(
+                        height: 220,
+                        child: Swiper(
+                          itemCount: 3,
+                          itemBuilder: (context, index) {
+                            return const SaleWidget();
+                          },
+                          autoplay: true,
+                          pagination: const SwiperPagination(
+                            alignment: Alignment.bottomCenter,
+                            builder: DotSwiperPaginationBuilder(
+                              color: ColorConst.whiteTextColor,
+                              activeColor: ColorConst.lightIconsColor,
                             ),
-                            TextButton(
-                                onPressed: () => Navigator.of(context).push(
-                                      PageTransition(
-                                        type: PageTransitionType.bottomToTop,
-                                        child: const ProductsScreen(),
-                                      ),
-                                    ),
-                                child: const Text(
-                                  "View All",
-                                  style: TextStyle(fontSize: 18.0),
-                                ))
-                          ],
+                          ),
+                          // control: const SwiperControl(),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: SizedBox(
-                        height: MediaQuery.of(context).size.height - 140,
-                        child: GridView.count(
-                          crossAxisCount: 2,
-                          children: List.generate(products.length, (index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      child: ProductDetails(
-                                          product: products[index]),
-                                    ),
-                                  );
-                                },
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                      color: ColorConst.lightCardColor,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color:
-                                              ColorConst.lightBackgroundColor,
-                                          blurRadius: 1.0,
-                                          spreadRadius: 1.0,
-                                          offset: Offset(2.0, 2.0),
-                                        )
-                                      ]),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        child: FancyShimmerImage(
-                                          height: 100,
-                                          width: double.infinity,
-                                          errorWidget: const Icon(
-                                            IconlyBold.danger,
-                                            color: Colors.red,
-                                            size: 28,
-                                          ),
-                                          imageUrl: products[index].images![0],
-                                          boxFit: BoxFit.fill,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 4, horizontal: 8),
-                                        child: Text(
-                                          '${products[index].title}',
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 1,
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w700,
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 8, right: 8, bottom: 4),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Flexible(
-                                              child: RichText(
-                                                text: TextSpan(
-                                                    text: '\$',
-                                                    style: const TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          33, 150, 243, 1),
-                                                    ),
-                                                    children: <TextSpan>[
-                                                      TextSpan(
-                                                        text:
-                                                            '${products[index].price}',
-                                                        style: const TextStyle(
-                                                          color: ColorConst
-                                                              .lightTextColor,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                      ),
-                                                    ]),
-                                              ),
-                                            ),
-                                            IconButton(
-                                              onPressed: () {
-                                                context
-                                                    .read<CartModel>()
-                                                    .addToCart(products[index]);
-                                              },
-                                              icon: const Icon(Icons
-                                                  .add_shopping_cart_outlined),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                      const SizedBox(height: 8.0),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "Latest Products",
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: SizedBox(
+                          height: 221.0,
+                          child: ProductListView(products: products),
+                        ),
+                      ),
+                      const SizedBox(height: 8.0),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                "Popular Products",
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
-                            );
-                          }),
+                              TextButton(
+                                  onPressed: () => Navigator.of(context).push(
+                                        PageTransition(
+                                          type: PageTransitionType.bottomToTop,
+                                          child: const ProductsScreen(),
+                                        ),
+                                      ),
+                                  child: const Text(
+                                    "View All",
+                                    style: TextStyle(fontSize: 18.0),
+                                  ))
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              );
+                    ],
+                  ));
+              // return SingleChildScrollView(
+              //   child: Column(
+              //     children: [
+              //       SizedBox(
+              //         height: 220,
+              //         child: Swiper(
+              //           itemCount: 3,
+              //           itemBuilder: (context, index) {
+              //             return const SaleWidget();
+              //           },
+              //           autoplay: true,
+              //           pagination: const SwiperPagination(
+              //             alignment: Alignment.bottomCenter,
+              //             builder: DotSwiperPaginationBuilder(
+              //               color: ColorConst.whiteTextColor,
+              //               activeColor: ColorConst.lightIconsColor,
+              //             ),
+              //           ),
+              //           // control: const SwiperControl(),
+              //         ),
+              //       ),
+              //       const SizedBox(height: 8.0),
+              //       const Padding(
+              //         padding: EdgeInsets.all(8.0),
+              //         child: Align(
+              //           alignment: Alignment.topLeft,
+              //           child: Text(
+              //             "Latest Products",
+              //             style: TextStyle(
+              //               fontSize: 18.0,
+              //               fontWeight: FontWeight.w600,
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //       Padding(
+              //         padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              //         child: SizedBox(
+              //           height: 221.0,
+              //           child: ProductListView(products: products),
+              //         ),
+              //       ),
+              //       const SizedBox(height: 8.0),
+              //       Padding(
+              //         padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              //         child: Align(
+              //           alignment: Alignment.topLeft,
+              //           child: Row(
+              //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //             children: [
+              //               const Text(
+              //                 "Popular Products",
+              //                 style: TextStyle(
+              //                   fontSize: 18.0,
+              //                   fontWeight: FontWeight.w600,
+              //                 ),
+              //               ),
+              //               TextButton(
+              //                   onPressed: () => Navigator.of(context).push(
+              //                         PageTransition(
+              //                           type: PageTransitionType.bottomToTop,
+              //                           child: const ProductsScreen(),
+              //                         ),
+              //                       ),
+              //                   child: const Text(
+              //                     "View All",
+              //                     style: TextStyle(fontSize: 18.0),
+              //                   ))
+              //             ],
+              //           ),
+              //         ),
+              //       ),
+              //       Padding(
+              //         padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              //         child: SizedBox(
+              //           height: MediaQuery.of(context).size.height - 140,
+              //           child: GridView.count(
+              //             crossAxisCount: 2,
+              //             children: List.generate(products.length, (index) {
+              //               return Padding(
+              //                 padding: const EdgeInsets.all(8.0),
+              //                 child: InkWell(
+              //                   onTap: () {
+              //                     Navigator.push(
+              //                       context,
+              //                       PageTransition(
+              //                         type: PageTransitionType.fade,
+              //                         child: ProductDetails(
+              //                             product: products[index]),
+              //                       ),
+              //                     );
+              //                   },
+              //                   child: Container(
+              //                     decoration: const BoxDecoration(
+              //                         color: ColorConst.lightCardColor,
+              //                         boxShadow: [
+              //                           BoxShadow(
+              //                             color:
+              //                                 ColorConst.lightBackgroundColor,
+              //                             blurRadius: 1.0,
+              //                             spreadRadius: 1.0,
+              //                             offset: Offset(2.0, 2.0),
+              //                           )
+              //                         ]),
+              //                     child: Column(
+              //                       mainAxisSize: MainAxisSize.min,
+              //                       crossAxisAlignment:
+              //                           CrossAxisAlignment.start,
+              //                       children: [
+              //                         SizedBox(
+              //                           child: FancyShimmerImage(
+              //                             height: 100,
+              //                             width: double.infinity,
+              //                             errorWidget: const Icon(
+              //                               IconlyBold.danger,
+              //                               color: Colors.red,
+              //                               size: 28,
+              //                             ),
+              //                             imageUrl: products[index].images![0],
+              //                             boxFit: BoxFit.fill,
+              //                           ),
+              //                         ),
+              //                         Padding(
+              //                           padding: const EdgeInsets.symmetric(
+              //                               vertical: 4, horizontal: 8),
+              //                           child: Text(
+              //                             '${products[index].title}',
+              //                             overflow: TextOverflow.ellipsis,
+              //                             maxLines: 1,
+              //                             style: const TextStyle(
+              //                               fontSize: 16,
+              //                               fontWeight: FontWeight.w700,
+              //                             ),
+              //                           ),
+              //                         ),
+              //                         Padding(
+              //                           padding: const EdgeInsets.only(
+              //                               left: 8, right: 8, bottom: 4),
+              //                           child: Row(
+              //                             mainAxisAlignment:
+              //                                 MainAxisAlignment.spaceBetween,
+              //                             children: [
+              //                               Flexible(
+              //                                 child: RichText(
+              //                                   text: TextSpan(
+              //                                       text: '\$',
+              //                                       style: const TextStyle(
+              //                                         color: Color.fromRGBO(
+              //                                             33, 150, 243, 1),
+              //                                       ),
+              //                                       children: <TextSpan>[
+              //                                         TextSpan(
+              //                                           text:
+              //                                               '${products[index].price}',
+              //                                           style: const TextStyle(
+              //                                             color: ColorConst
+              //                                                 .lightTextColor,
+              //                                             fontWeight:
+              //                                                 FontWeight.w500,
+              //                                           ),
+              //                                         ),
+              //                                       ]),
+              //                                 ),
+              //                               ),
+              //                               IconButton(
+              //                                 onPressed: () {
+              //                                   context
+              //                                       .read<CartModel>()
+              //                                       .addToCart(products[index]);
+              //                                 },
+              //                                 icon: const Icon(Icons
+              //                                     .add_shopping_cart_outlined),
+              //                               ),
+              //                             ],
+              //                           ),
+              //                         ),
+              //                       ],
+              //                     ),
+              //                   ),
+              //                 ),
+              //               );
+              //             }),
+              //           ),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // );
             }),
       ),
     );

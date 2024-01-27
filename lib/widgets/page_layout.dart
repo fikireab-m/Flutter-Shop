@@ -9,7 +9,7 @@ class PageLayout extends StatelessWidget {
   final Widget? appBarTitle;
   final Widget? leading;
   final List<Widget>? appbarActions;
-  final ScrollController scrollController;
+  final ScrollController? scrollController;
   final Widget bgWidget;
   final List<Product> products;
   const PageLayout({
@@ -18,7 +18,7 @@ class PageLayout extends StatelessWidget {
     required this.products,
     this.leading,
     required this.bgWidget,
-    required this.scrollController,
+    this.scrollController,
     this.extentHeight,
     this.appbarActions,
   });
@@ -35,7 +35,7 @@ class PageLayout extends StatelessWidget {
             pinned: false,
             snap: false,
             floating: false,
-            expandedHeight: extentHeight ?? constraints.maxHeight / 4,
+            expandedHeight: extentHeight ?? 550,
             centerTitle: false,
             automaticallyImplyLeading: false,
             leading: leading,
