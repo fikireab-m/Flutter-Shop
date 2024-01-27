@@ -48,34 +48,36 @@ class PageLayout extends StatelessWidget {
               background: bgWidget,
             ),
           ),
-          SliverList.list(children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    "Popular Products",
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.w600,
+          SliverList.list(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "Popular Products",
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                  TextButton(
-                      onPressed: () => Navigator.of(context).push(
-                            PageTransition(
-                              type: PageTransitionType.bottomToTop,
-                              child: const ProductsScreen(),
+                    TextButton(
+                        onPressed: () => Navigator.of(context).push(
+                              PageTransition(
+                                type: PageTransitionType.bottomToTop,
+                                child: const ProductsScreen(),
+                              ),
                             ),
-                          ),
-                      child: const Text(
-                        "View All",
-                        style: TextStyle(fontSize: 18.0),
-                      ))
-                ],
+                        child: const Text(
+                          "View All",
+                          style: TextStyle(fontSize: 18.0),
+                        ))
+                  ],
+                ),
               ),
-            ),
-          ]),
+            ],
+          ),
           SliverGrid(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: constraints.maxWidth ~/ 180,

@@ -111,6 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
               final products = snapshot.data!;
               return PageLayout(
                   products: products,
+                  scrollController: _scrollController,
                   bgWidget: Column(
                     children: [
                       SizedBox(
