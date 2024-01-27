@@ -152,36 +152,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: ProductListView(products: products),
                         ),
                       ),
-                      const SizedBox(height: 8.0),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text(
-                                "Popular Products",
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              TextButton(
-                                  onPressed: () => Navigator.of(context).push(
-                                        PageTransition(
-                                          type: PageTransitionType.bottomToTop,
-                                          child: const ProductsScreen(),
-                                        ),
-                                      ),
-                                  child: const Text(
-                                    "View All",
-                                    style: TextStyle(fontSize: 18.0),
-                                  ))
-                            ],
-                          ),
-                        ),
-                      ),
                     ],
                   ));
               // return SingleChildScrollView(
