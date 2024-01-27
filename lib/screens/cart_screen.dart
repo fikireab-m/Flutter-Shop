@@ -4,6 +4,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_shop/constants/colors.dart';
 import 'package:flutter_shop/models/cart.dart';
 import 'package:flutter_shop/models/product.dart';
+import 'package:flutter_shop/screens/checkout.dart';
 import 'package:flutter_shop/screens/products_screen.dart';
 import 'package:flutter_shop/widgets/icon_button.dart';
 import 'package:page_transition/page_transition.dart';
@@ -136,7 +137,13 @@ class ShopingCart extends StatelessWidget {
                           width: double.infinity,
                           child: Center(
                             child: ElevatedButton.icon(
-                              onPressed: () {},
+                              onPressed: () => Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.fade,
+                                  child: const CheckoutScreen(),
+                                ),
+                              ),
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: ColorConst.lightIconsColor,
                                   padding: const EdgeInsets.symmetric(

@@ -10,7 +10,6 @@ import 'package:flutter_shop/screens/categories_screen.dart';
 import 'package:flutter_shop/screens/product_details_screen.dart';
 import 'package:flutter_shop/screens/products_screen.dart';
 import 'package:flutter_shop/widgets/horizontal_scroll.dart';
-import 'package:flutter_shop/widgets/product_widget.dart';
 import 'package:flutter_shop/widgets/sale_widget.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:card_swiper/card_swiper.dart';
@@ -184,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: SizedBox(
-                        height: MediaQuery.of(context).size.height - 442,
+                        height: MediaQuery.of(context).size.height - 80,
                         child: GridView.count(
                           crossAxisCount: 2,
                           children: List.generate(products.length, (index) {
